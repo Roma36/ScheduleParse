@@ -4,18 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Bsuir Schedule</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.min.css">
     <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
-    <script src="js/jquery.ajax-cross-origin.min.js" type="text/javascript"></script>
 </head>
 
 <body>
-    <div class="input-field">
-        <input type="text">
+    <div class="app">
+        <div class="input-group">
+            <input type="text">
+            <button class="get-schedule-btn"></button>
+        </div>
     </div>
 
+
     <div id='container'></div>
-    <script src = "js/xmlToJson.js" type="text/javascript"></script>
+    <script src="js/xmlToJson.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
+    <script src="js/controller.js" type="text/javascript"></script>
 </body>
 
 </html>

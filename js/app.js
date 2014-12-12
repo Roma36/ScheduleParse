@@ -45,6 +45,4 @@ function loadXMLDoc(path) {
 }
 
 
-$.support.cors = true;
 
-getXml('351001');
