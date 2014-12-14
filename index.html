@@ -6,6 +6,35 @@
     <title>Bsuir Schedule</title>
     <link rel="stylesheet" type="text/css" href="css/styles.min.css">
     <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="js/jquery.tmpl.min.js" type="text/javascript"></script>
+    <script id="lessonTmpl" type="text/x-jquery-tmpl">
+        <div class="lesson">
+            <div>
+                <p>${weeks}</p>
+            </div>
+
+            <div>
+                <p>${subject}</p>
+            </div>
+            <div>
+                <p>${lessonType}</p>
+            </div>
+            <div class="subgroup">
+                <p>
+                    ${numSubGroup}
+                </p>
+            </div>
+            <div>
+                <p>${room}</p>
+            </div>
+            <div>
+                <p>${time}</p>
+            </div>
+            <div class="teacher">
+                <p>${teacher}</p>
+            </div>
+        </div>
+    </script>
 </head>
 
 <body>
@@ -14,10 +43,16 @@
             <input type="text">
             <button class="get-schedule-btn"></button>
         </div>
+        <div class="schedule-container">
+            <div class="menu"></div>
+            <div class="daily-schedule"></div>
+            <div class="show-week-schedule-btn"></div>
+            <div class="week-schedule"></div>
+        </div>
     </div>
 
 
-    <div id='container'></div>
+
     <script src="js/xmlToJson.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
     <script src="js/controller.js" type="text/javascript"></script>
