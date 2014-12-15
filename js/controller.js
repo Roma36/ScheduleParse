@@ -1,15 +1,18 @@
 $(document).ready(function() {
 
-    $('.get-schedule-btn').click(function() {
-        var groupNumber = $('.input-group > input').val();
-        getXml(groupNumber);
-    });
-
-    $('.input-group > input').keyup(function(event) {
+    $('.input-search').keyup(function(event) {
         if (event.keyCode == 13) {
-            $('.get-schedule-btn').click();
+            var groupNumber = $(this).val();
+            getXml(groupNumber);
             return false;
         }
+    });
+
+    
+
+    $('.nav-tabs').on('show.tools.tabs', function(tab, hash) {
+        $('.daily-schedule').empty();
+        $('.daily-schedule').append($(hash).html());
     });
 
 });

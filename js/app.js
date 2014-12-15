@@ -1,3 +1,5 @@
+var weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
 function getXml(groupNumber) {
 
     var scheduleLocalPath = "schedules/" + groupNumber + ".xml";
@@ -22,7 +24,7 @@ function getXml(groupNumber) {
 
 }
 
-function syncTemplateData(lesson) {
+function syncTemplateData(lesson, day) {
     var lessonItems = {};
 
     var weekNumbers = "";
@@ -54,29 +56,36 @@ function syncTemplateData(lesson) {
         lessonItems.teacher = lesson.employee.firstName["#text"] + " " + lesson.employee.middleName["#text"] + " " + lesson.employee.lastName["#text"];
     }
 
-    $('#lessonTmpl').tmpl(lessonItems).appendTo('.daily-schedule');
+    $('#lessonTmpl').tmpl(lessonItems).appendTo('#' + weekDays[day]);
 }
 
 function parseXml(xml) {
     var jsonSchedule = xmlToJson(xml).scheduleXmlModels.scheduleModel;
 
-    var day = 1;
+    var day;
 
     var count = 0;
 
 
+    $('div.hidden').empty();
+    for (day = 0; day < 6; day++) {
+        if (jsonSchedule[day].schedule.length === undefined) {
+            syncTemplateData(jsonSchedule[day].schedule);
+
+        } else {
+            $.each(jsonSchedule[day].schedule, function(i, lesson) {
+                syncTemplateData(lesson, day)
+            });
+
+        }
+    }
+
+
+    var activeHash = $('.nav-tabs').tabs('getActiveHash');
 
     $('.daily-schedule').empty();
+    $('.daily-schedule').append($(activeHash).html());
 
-    if (jsonSchedule[day].schedule.length === undefined) {
-        syncTemplateData(jsonSchedule[day].schedule);
-
-    } else {
-        $.each(jsonSchedule[day].schedule, function(i, lesson) {
-            syncTemplateData(lesson)
-        });
-
-    }
 
 
 

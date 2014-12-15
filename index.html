@@ -4,52 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <title>Bsuir Schedule</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=1,minimum-scale=1,minimal-ui" />
     <link rel="stylesheet" type="text/css" href="css/styles.min.css">
     <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="kube/js/kube.min.js"></script>
+    <link rel="stylesheet" href="kube/css/kube.min.css" />
     <script src="js/jquery.tmpl.min.js" type="text/javascript"></script>
     <script id="lessonTmpl" type="text/x-jquery-tmpl">
-        <div class="lesson">
-            <div>
-                <p>${weeks}</p>
-            </div>
+        <tr>
+            <td>${weeks}</td>
 
-            <div>
-                <p>${subject}</p>
-            </div>
-            <div>
-                <p>${lessonType}</p>
-            </div>
-            <div class="subgroup">
-                <p>
-                    ${numSubGroup}
-                </p>
-            </div>
-            <div>
-                <p>${room}</p>
-            </div>
-            <div>
-                <p>${time}</p>
-            </div>
-            <div class="teacher">
-                <p>${teacher}</p>
-            </div>
-        </div>
+
+            <td>${subject}</td>
+
+            <td>${lessonType}</td>
+
+            <td>${numSubGroup}</td>
+
+            <td>${room}</td>
+
+            <td>${time}</td>
+
+            <td>${teacher}</td>
+        </tr>
     </script>
 </head>
 
 <body>
-    <div class="app">
-        <div class="input-group">
-            <input type="text">
-            <button class="get-schedule-btn"></button>
-        </div>
-        <div class="schedule-container">
-            <div class="menu"></div>
-            <div class="daily-schedule"></div>
-            <div class="show-week-schedule-btn"></div>
-            <div class="week-schedule"></div>
+    <div class="wrapper">
+        <div class="app">
+            <input type="text" class="input-search" placeholder="Search">
+            <div class="schedule-container">
+                <div class="menu"></div>
+                <nav class="nav-tabs" data-tools="tabs" data-equals="true">
+                    <ul>
+                        <li><a href="#Monday">Понедельник</a>
+                        </li>
+                        <li><a href="#Tuesday">Вторник</a>
+                        </li>
+                        <li class="active"><a href="#Wednesday">Среда</a>
+                        </li>
+                        <li><a href="#Thursday">Четверг</a>
+                        </li>
+                        <li><a href="#Friday">Пятница</a>
+                        </li>
+                        <li><a href="#Saturday">Суббота</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="table-container ">
+                    <table class="table-hovered">
+                        <thead>
+                            <tr>
+                                <th>Недели</th>
+                                <th>Предмет</th>
+                                <th>Тип занятия</th>
+                                <th>Подгруппа</th>
+                                <th>Аудитория</th>
+                                <th>Время</th>
+                                <th>Преподаватель</th>
+                            </tr>
+                        </thead>
+                        <tbody class="daily-schedule">
+
+                        </tbody>                       
+                    </table>
+                </div>
+                <div class="hidden" id="Monday"></div>
+                <div class="hidden" id="Tuesday"></div>
+                <div class="hidden" id="Wednesday"></div>
+                <div class="hidden" id="Thursday"></div>
+                <div class="hidden" id="Friday"></div>
+                <div class="hidden" id="Saturday"></div>
+                <div class="show-week-schedule-btn"></div>
+                <div class="week-schedule"></div>
+            </div>
         </div>
     </div>
+
 
 
 
