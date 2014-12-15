@@ -66,6 +66,7 @@ function parseXml(xml) {
 
     var count = 0;
 
+    var currentDay = 1;
 
     $('div.hidden').empty();
     for (day = 0; day < 6; day++) {
@@ -81,10 +82,10 @@ function parseXml(xml) {
     }
 
 
-    var activeHash = $('.nav-tabs').tabs('getActiveHash');
+    $('.nav-tabs li').removeClass('active');
+    $('.'+weekDays[currentDay]).addClass('active');   
+    $('li.active > a').click();
 
-    $('.daily-schedule').empty();
-    $('.daily-schedule').append($(activeHash).html());
 
 
 

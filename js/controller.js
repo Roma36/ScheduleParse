@@ -9,6 +9,9 @@ $(document).ready(function() {
     });
 
     
+    $('#tabs').on('init.tools.tabs', function() {
+        $('.daily-schedule').empty();
+    });
 
     $('.nav-tabs').on('show.tools.tabs', function(tab, hash) {
         $('.daily-schedule').empty();
