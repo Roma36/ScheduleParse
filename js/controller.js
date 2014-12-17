@@ -9,14 +9,16 @@ $(document).ready(function() {
         }
     });
 
-    
+
 
     $('.nav-tabs').on('show.tools.tabs', function(tab, hash) {
         $('.daily-schedule').empty();
         $('.daily-schedule').append($(hash).html());
     });
 
-    $('#selectSubgroup .btn').click(function(){
+    $('#selectSubgroup .btn').click(function() {
+        $('.btn-active').removeClass('btn-active');
+        $(this).addClass('btn-active');
         applyScheduleOptions();
     });
 });
