@@ -88,16 +88,16 @@ function syncTemplateData(lesson, day) {
 function parseXml(xml) {
     var jsonSchedule = xmlToJson(xml).scheduleXmlModels.scheduleModel;
 
-    var day;
+
 
     var count = 0;
-
-    var currentDay = 1;
+    var date = new Date();
+    var currentDay = date.getDay()-1;;
 
 
 
     $('div.hidden').empty();
-    for (day = 0; day < 6; day++) {
+    for (var day = 0; day < 6; day++) {
         if (jsonSchedule[day].schedule.length === undefined) {
             syncTemplateData(jsonSchedule[day].schedule);
 
