@@ -1,5 +1,11 @@
 var weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+var lessonColors = {
+    "ЛК": "green",
+    "ПЗ": "orange",
+    "ЛР": "red"
+};
+
 function getXml(groupNumber) {
 
     var scheduleLocalPath = "schedules/" + groupNumber + ".xml";
@@ -22,6 +28,19 @@ function getXml(groupNumber) {
         }
     });
 
+}
+
+function applyScheduleOptions() {
+    var subgroupOption = document.querySelector("#selectSubgroup .btn-active").getAttribute("value");
+    var lessonRows = document.querySelectorAll(".lesson");
+    [].forEach.call(lessonRows, function(lesson) {
+        var subgroup = lesson.querySelector(".subgroup").innerHTML;
+        if ((subgroup === subgroupOption) || (subgroup === "") || (subgroupOption === "0")) {
+            $(lesson).show();
+        } else {
+            $(lesson).hide();
+        }
+    });
 }
 
 function syncTemplateData(lesson, day) {
@@ -56,7 +75,14 @@ function syncTemplateData(lesson, day) {
         lessonItems.teacher = lesson.employee.firstName["#text"] + " " + lesson.employee.middleName["#text"] + " " + lesson.employee.lastName["#text"];
     }
 
+    if (lessonItems.subject === "ФизК") {
+        lessonItems.lessonColor = "grey";
+    } else {
+        lessonItems.lessonColor = lessonColors[lessonItems.lessonType];
+    }
+
     $('#lessonTmpl').tmpl(lessonItems).appendTo('#' + weekDays[day]);
+
 }
 
 function parseXml(xml) {
@@ -67,6 +93,8 @@ function parseXml(xml) {
     var count = 0;
 
     var currentDay = 1;
+
+
 
     $('div.hidden').empty();
     for (day = 0; day < 6; day++) {
@@ -83,11 +111,8 @@ function parseXml(xml) {
 
 
     $('.nav-tabs li').removeClass('active');
-    $('.'+weekDays[currentDay]).addClass('active');   
+    $('.' + weekDays[currentDay]).addClass('active');
     $('li.active > a').click();
-
-
-
-
-
+    $('.schedule-container').show();
+    applyScheduleOptions();
 }

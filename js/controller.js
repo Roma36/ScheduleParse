@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
     $('.input-search').keyup(function(event) {
         if (event.keyCode == 13) {
             var groupNumber = $(this).val();
@@ -9,13 +10,13 @@ $(document).ready(function() {
     });
 
     
-    $('#tabs').on('init.tools.tabs', function() {
-        $('.daily-schedule').empty();
-    });
 
     $('.nav-tabs').on('show.tools.tabs', function(tab, hash) {
         $('.daily-schedule').empty();
         $('.daily-schedule').append($(hash).html());
     });
 
+    $('#selectSubgroup .btn').click(function(){
+        applyScheduleOptions();
+    });
 });

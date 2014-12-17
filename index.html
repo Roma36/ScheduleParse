@@ -6,36 +6,22 @@
     <title>Bsuir Schedule</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=1,minimum-scale=1,minimal-ui" />
     <link rel="stylesheet" type="text/css" href="css/styles.min.css">
-    <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
-    <script src="kube/js/kube.min.js"></script>
     <link rel="stylesheet" href="kube/css/kube.min.css" />
-    <script src="js/jquery.tmpl.min.js" type="text/javascript"></script>
-    <script id="lessonTmpl" type="text/x-jquery-tmpl">
-        <tr>
-            <td>${weeks}</td>
 
-
-            <td>${subject}</td>
-
-            <td>${lessonType}</td>
-
-            <td>${numSubGroup}</td>
-
-            <td>${room}</td>
-
-            <td>${time}</td>
-
-            <td>${teacher}</td>
-        </tr>
-    </script>
 </head>
 
 <body>
     <div class="wrapper">
         <div class="app">
+            <div class="schedule-options">
+                <p data-tools="buttons" id="selectSubgroup">
+                    <button class="btn btn-active" value="0">Все</button>
+                    <button class="btn" value="1">1</button>
+                    <button class="btn" value="2">2</button>
+                </p>
+            </div>
             <input type="text" class="input-search" placeholder="Search">
             <div class="schedule-container">
-                <div class="menu"></div>
                 <nav class="nav-tabs" data-tools="tabs" data-equals="true">
                     <ul>
                         <li class="Monday"><a href="#Monday">Понедельник</a>
@@ -67,7 +53,7 @@
                         </thead>
                         <tbody class="daily-schedule">
 
-                        </tbody>                       
+                        </tbody>
                     </table>
                 </div>
                 <div class="hidden" id="Monday"></div>
@@ -85,9 +71,32 @@
 
 
 
-    <script src="js/xmlToJson.js" type="text/javascript"></script>
-    <script src="js/app.js" type="text/javascript"></script>
-    <script src="js/controller.js" type="text/javascript"></script>
+
 </body>
+<script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="kube/js/kube.min.js"></script>
+<script src="js/xmlToJson.js" type="text/javascript"></script>
+<script src="js/app.js" type="text/javascript"></script>
+<script src="js/controller.js" type="text/javascript"></script>
+<script src="js/jquery.tmpl.min.js" type="text/javascript"></script>
+<script id="lessonTmpl" type="text/x-jquery-tmpl">
+    <tr class="lesson" id=${lessonColor}>
+
+        <td>${weeks}</td>
+
+
+        <td>${subject}</td>
+
+        <td>${lessonType}</td>
+
+        <td class="subgroup">${numSubGroup}</td>
+
+        <td>${room}</td>
+
+        <td>${time}</td>
+
+        <td>${teacher}</td>
+    </tr>
+</script>
 
 </html>
