@@ -131,7 +131,7 @@ function parseXml(xml) {
 
 
     $('div.hidden').empty();
-    for (var day = 0; day < 6; day++) {
+    for (var day = 0; day < jsonSchedule.length; day++) {
         if (jsonSchedule[day].schedule.length === undefined) {
             syncTemplateData(jsonSchedule[day].schedule);
 
