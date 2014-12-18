@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Bsuir Schedule</title>
+    <title>Расписание БГУИР</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=1,minimum-scale=1,minimal-ui" />
     <link rel="stylesheet" type="text/css" href="css/styles.min.css">
     <link rel="stylesheet" href="kube/css/kube.min.css" />
@@ -11,16 +11,90 @@
 </head>
 
 <body>
+
     <div class="wrapper">
-        <div class="app">
-            <div class="schedule-options">
-                <p data-tools="buttons" id="selectSubgroup">
-                    <button class="btn btn-active" value="0">Все</button>
-                    <button class="btn" value="1">1</button>
-                    <button class="btn" value="2">2</button>
-                </p>
+        <header>
+            <div class="options-header units-row">
+                <div class="unit-50">
+                    <div class="left">
+                        <label for="select-subgroup">
+                            <h3>Выберите подгруппу</h3>
+                        </label>
+                        <div id="select-subgroup">
+                            <p data-tools="buttons" id="selectSubgroup">
+                                <button class="btn btn-active" value="0">Обе</button>
+                                <button class="btn" value="1">1</button>
+                                <button class="btn" value="2">2</button>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="unit-50">
+                    <div class="right">
+                        <label for="select-week">
+                            <h3>Выберите учебные недели</h3>
+                        </label>
+                        <ul id="select-week">
+                            <li>
+                                <input type="checkbox" data-tools="check-all" data-classname="week-checkbox" data-parent="li" id="ch-all" />
+                                <label for="ch-all">Выбрать все</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="week-1" class="week-checkbox" value="1" />
+                                <label for="week-1">1</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="week-2" class="week-checkbox" value="2" />
+                                <label for="week-2">2</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="week-3" class="week-checkbox" value="3" />
+                                <label for="week-3">3</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="week-4" class="week-checkbox" value="4" />
+                                <label for="week-4">4</label>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
             </div>
-            <input type="text" class="input-search" placeholder="Search">
+        </header>
+
+        <div id="schedule-not-found" class="tools-message tools-message-red">
+            Расписание не найдено
+        </div>
+        <div class="app">
+
+            <input type="text" class="input-search" placeholder="Введите номер группы">
+            <div id="blurringTextG">
+                <div id="blurringTextG_1" class="blurringTextG">
+                    З</div>
+                <div id="blurringTextG_2" class="blurringTextG">
+                    а</div>
+                <div id="blurringTextG_3" class="blurringTextG">
+                    г</div>
+                <div id="blurringTextG_4" class="blurringTextG">
+                    р</div>
+                <div id="blurringTextG_5" class="blurringTextG">
+                    у</div>
+                <div id="blurringTextG_6" class="blurringTextG">
+                    з</div>
+                <div id="blurringTextG_7" class="blurringTextG">
+                    к</div>
+                <div id="blurringTextG_8" class="blurringTextG">
+                    а</div>
+                <div id="blurringTextG_9" class="blurringTextG">
+                    .</div>
+                <div id="blurringTextG_10" class="blurringTextG">
+                    .</div>
+                <div id="blurringTextG_11" class="blurringTextG">
+                    .</div>
+            </div>
             <div class="schedule-container">
                 <nav class="nav-tabs" data-tools="tabs" data-equals="true">
                     <ul>
@@ -44,7 +118,7 @@
                             <tr>
                                 <th>Недели</th>
                                 <th>Предмет</th>
-                                <th>Тип занятия</th>
+                                <th>Тип</th>
                                 <th>Подгруппа</th>
                                 <th>Аудитория</th>
                                 <th>Время</th>
@@ -73,6 +147,7 @@
 
 
 </body>
+
 <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
 <script src="kube/js/kube.min.js"></script>
 <script src="js/xmlToJson.js" type="text/javascript"></script>
@@ -82,14 +157,14 @@
 <script id="lessonTmpl" type="text/x-jquery-tmpl">
     <tr class="lesson" id=${lessonColor}>
 
-        <td>${weeks}</td>
+        <td id="weeks">${weeks}</td>
 
 
         <td>${subject}</td>
 
         <td>${lessonType}</td>
 
-        <td class="subgroup">${numSubGroup}</td>
+        <td id="subgroup">${numSubGroup}</td>
 
         <td>${room}</td>
 

@@ -21,4 +21,8 @@ $(document).ready(function() {
         $(this).addClass('btn-active');
         applyScheduleOptions();
     });
+
+    $('.week-checkbox').change(function() {
+        applyScheduleOptions();
+    });
 });

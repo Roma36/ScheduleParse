@@ -1,26 +1,54 @@
 @import "mixins.less";
 @import "components/lesson.less";
-
+@import "components/loading.less";
 .hidden {
-	display: none!important;
+    display: none!important;
 }
-
 .wrapper {
-	width: 60%;
-	margin: 0 auto;
+    width: 60%;
+    margin: 0 auto;
+    text-align: left;
+    .options-header {
+        h3 {
+            color: #3cc;
+        }
+        #select-week {
+            li {
+                list-style: none;
+                display: inline-block;
+            }
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+            cursor: pointer;
+            label {
+                cursor: pointer;
+            }
+        }
+    }
+    ul {
+        margin: 2% 0 4% 0;
+    }
     .app {
-        margin-top: 15%;
-        width: 100%;
+        font-family: Helvetica, sans-serif;
+        margin: 3% auto;
+        width: 95%;
         text-align: center;
-        .schedule-container {	
+        .schedule-container {
             display: none;
         }
         .input-search {
-            width: 60%;
+            width: 100%;
         }
-
         .table {
-        	width: 100%;
+            width: 100%;
+        }
+        label {
+            margin-bottom: 3%;
         }
     }
 }

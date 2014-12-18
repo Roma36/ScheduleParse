@@ -7,7 +7,8 @@ var lessonColors = {
 };
 
 function getXml(groupNumber) {
-
+    $(".schedule-container").hide();
+    $("#blurringTextG").show();
     var scheduleLocalPath = "schedules/" + groupNumber + ".xml";
     var scheduleWebPath = 'https://cors-anywhere.herokuapp.com/' + 'http://www.bsuir.by/schedule/rest/schedule/' + groupNumber;
     $.ajax({
@@ -22,7 +23,9 @@ function getXml(groupNumber) {
                 dataType: "xml",
                 success: parseXml,
                 error: (function() {
-                    alert('Schedule not found');
+                    $("#blurringTextG").hide();
+                    $("#schedule-not-found").message();
+
                 })
             });
         }
@@ -30,13 +33,43 @@ function getXml(groupNumber) {
 
 }
 
+function hasEqualElements(firstArray, secondArray) {
+    for (var i = 0; i < firstArray.length; i++) {
+        for (var j = 0; j < secondArray.length; j++) {
+            if (firstArray[i] === secondArray[j]) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 function applyScheduleOptions() {
     var subgroupOption = document.querySelector("#selectSubgroup .btn-active").getAttribute("value");
+    var userWeekOptions = [];
+    var weekCheckboxes = document.querySelectorAll(".week-checkbox");
+
+    $.each(weekCheckboxes, function(i, value) {
+        if (value.checked) {
+            userWeekOptions.push(value.getAttribute("value"));
+        }
+
+    });
+    if (userWeekOptions.length === 0) {
+        userWeekOptions = ['1', '2', '3', '4'];
+    }
+
     var lessonRows = document.querySelectorAll(".lesson");
     [].forEach.call(lessonRows, function(lesson) {
-        var subgroup = lesson.querySelector(".subgroup").innerHTML;
+        var subgroup = lesson.querySelector("#subgroup").innerHTML;
+        var weeksArray = lesson.querySelector("#weeks").innerHTML.split('');
         if ((subgroup === subgroupOption) || (subgroup === "") || (subgroupOption === "0")) {
-            $(lesson).show();
+            if (hasEqualElements(userWeekOptions, weeksArray) || (weeksArray.length === 0)) {
+                $(lesson).show();
+            } else {
+                $(lesson).hide();
+            }
+
         } else {
             $(lesson).hide();
         }
@@ -86,13 +119,14 @@ function syncTemplateData(lesson, day) {
 }
 
 function parseXml(xml) {
+    $("#blurringTextG").hide();
     var jsonSchedule = xmlToJson(xml).scheduleXmlModels.scheduleModel;
 
 
 
     var count = 0;
     var date = new Date();
-    var currentDay = date.getDay()-1;;
+    var currentDay = date.getDay() - 1;
 
 
 
